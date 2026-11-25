@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>NubeDrop - Tu nube privada</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1120;
+      color: #f8fafc;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      border-bottom: 1px solid #263449;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .brand span {
+      color: #38bdf8;
+    }
+
+    .status {
+      color: #4ade80;
+      font-size: 12px;
+    }
+
+    main {
+      width: min(650px, 92%);
+      margin: 55px auto;
+    }
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .welcome h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .welcome p {
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .panel {
+      background: #151f31;
+      border: 1px solid #263449;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .panel h2 {
+      font-size: 19px;
+      margin-bottom: 18px;
+    }
+
+    .dropzone {
+      border: 2px dashed #38516f;
+      border-radius: 14px;
+      padding: 35px 15px;
+      text-align: center;
+      background: #101a2b;
+    }
+
+    .cloud {
+      font-size: 43px;
+      margin-bottom: 12px;
+    }
+
+    .dropzone p {
+      color: #94a3b8;
+      font-size: 13px;
+      margin: 10px 0 18px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .select-button {
+      display: inline-block;
+      background: #2563eb;
+      padding: 12px 20px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .file-info {
+      margin-top: 16px;
+      color: #7dd3fc;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .upload-button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 9px;
+      background: #334155;
+      color: #cbd5e1;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .upload-button:disabled {
+      opacity: .65;
+    }
+
+    .notice {
+      color: #94a3b8;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .feature {
+      background: #151f31;
+      padding: 17px;
+      border-radius: 12px;
+      border: 1px solid #263449;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .feature p {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">☁️ Nube<span>Drop</span></div>
+  <div class="status">● Proyecto iniciado</div>
+</header>
+
+<main>
+  <section class="welcome">
+    <h1>Tu nube personal</h1>
+    <p>Transfiere tus archivos entre dispositivos
+       de manera sencilla y privada.</p>
+  </section>
+
+  <section class="panel">
+    <h2>📤 Subir un archivo</h2>
+
+    <div class="dropzone">
+      <div class="cloud">☁️</div>
+      <strong>Selecciona tu archivo</strong>
+      <p>Compatible con ZIP y RAR</p>
+
+      <label for="file" class="select-button">
+        Elegir archivo
+      </label>
+
+      <input id="file" type="file"
+        accept=".zip,.rar">
+
+      <div id="fileInfo" class="file-info">
+        Ningún archivo seleccionado
+      </div>
+    </div>
+
+    <button class="upload-button" disabled>
+      Transferencia próximamente
+    </button>
+
+    <p class="notice">
+      La conexión al almacenamiento seguro y la
+      transferencia reanudable se implementarán
+      en la siguiente etapa.
+    </p>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <strong>🔐 Privacidad</strong>
+      <p>Acceso mediante cuenta propia.</p>
+    </div>
+    <div class="feature">
+      <strong>📦 Archivos grandes</strong>
+      <p>Preparado para transferencias de varios GB.</p>
+    </div>
+    <div class="feature">
+      <strong>📱 iPhone</strong>
+      <p>Selecciona desde la app Archivos.</p>
+    </div>
+    <div class="feature">
+      <strong>💻 Windows</strong>
+      <p>Descarga desde tu laptop.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  NubeDrop © 2026 · Tu nube, tus archivos.
+</footer>
+
+<script>
+  const fileInput = document.getElementById("file");
+  const fileInfo = document.getElementById("fileInfo");
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+
+    if (!file) {
+      fileInfo.textContent = "Ningún archivo seleccionado";
+      return;
+    }
+
+    const size = (file.size / (1024 ** 3)).toFixed(2);
+
+    fileInfo.textContent =
+      file.name + " · " + size + " GB";
+  });
+</script>
+
+</body>
+</html>
